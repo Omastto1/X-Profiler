@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.hourglass {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  animation: flip 6s infinite linear;
+  background: 
+    linear-gradient(#2563eb 0 0) top/100% 5px,
+    linear-gradient(#2563eb 0 0) bottom/100% 5px;
+  background-repeat: no-repeat;
+}
+
+.hourglass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(#2563eb 0 0) left/5px 100%,
+    linear-gradient(#2563eb 0 0) right/5px 100%,
+    linear-gradient(to bottom right, transparent calc(50% - 2.5px), #2563eb calc(50% - 2.5px), #2563eb calc(50% + 2.5px), transparent calc(50% + 2.5px)) center/100% 100%,
+    linear-gradient(to bottom left, transparent calc(50% - 2.5px), #2563eb calc(50% - 2.5px), #2563eb calc(50% + 2.5px), transparent calc(50% + 2.5px)) center/100% 100%;
+  background-repeat: no-repeat;
+}
+
+@keyframes flip {
+  0%, 45%, 55%, 100% { transform: rotate(0deg) }
+  50% { transform: rotate(180deg) }
+}

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import HandleInput from "@/components/HandleInput";
 import ResultsDisplay from "@/components/ResultsDisplay";
+import LoadingHourglass from "@/components/LoadingHourglass";
 import { Users } from "lucide-react";
 import axios from "axios";
 
@@ -67,7 +68,11 @@ function Home() {
 
       <div className="flex flex-col items-center gap-8">
         <HandleInput onSubmit={handleSubmit} isLoading={isLoading} />
-        <ResultsDisplay profiles={profiles} />
+        {isLoading ? (
+          <LoadingHourglass />
+        ) : (
+          <ResultsDisplay profiles={profiles} />
+        )}
       </div>
     </div>
   );
