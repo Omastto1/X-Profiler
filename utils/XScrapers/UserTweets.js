@@ -48,13 +48,13 @@ export default async function getUserTweets(handle) {
     from: handle,
   };
 
-  // const actor = client.actor("CJdippxWmn9uRfooo");
-  // const tweets_run = await callActorWithRetry(actor, posts_input);
+  const actor = client.actor("CJdippxWmn9uRfooo");
+  const tweets_run = await callActorWithRetry(actor, posts_input);
 
   // Fetch and print Actor results from the run's dataset (if any)
   const { items } = await client
-    .dataset("YARhKNQrY52id47Eo")
-    .listItems(); // tweets_run.defaultDatasetId
+    .dataset(tweets_run.defaultDatasetId)
+    .listItems(); // "YARhKNQrY52id47Eo"
 
   const relevantTweets = items.filter((item) => item.type === "tweet");
 

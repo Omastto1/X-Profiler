@@ -13,13 +13,13 @@ export default async function getUserFollowersLocations({ handle }) {
   followers_input.user_names = [handle];
 
   // Run the Actor and wait for it to finish
-  // const actor = client.actor("C2Wk3I6xAqC4Xi63f");
-  // const run = await callActorWithRetry(actor, {
-  //   ...followers_input,
-  //   memoryMbytes: 512 // Limit memory usage to 512MB
-  // });
+  const actor = client.actor("C2Wk3I6xAqC4Xi63f");
+  const run = await callActorWithRetry(actor, {
+    ...followers_input,
+    memoryMbytes: 512 // Limit memory usage to 512MB
+  });
 
-  const { items } = await client.dataset('KZegtEBc8TN3z3Fha').listItems(); // run.defaultDatasetId
+  const { items } = await client.dataset(run.defaultDatasetId).listItems(); // 'KZegtEBc8TN3z3Fha'
 
   return {
     locations: items
