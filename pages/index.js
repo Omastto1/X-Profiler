@@ -4,8 +4,6 @@ import ResultsDisplay from "@/components/ResultsDisplay";
 import { Users } from "lucide-react";
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/api";
-
 function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [profiles, setProfiles] = useState([]);
@@ -27,7 +25,7 @@ function Home() {
     try {
       const profileStartTime = performance.now();
 
-      const response = await axios.post(`${API_URL}/analyze`, { handles });
+      const response = await axios.post(`/api/analyze`, { handles });
 
       const profileEndTime = performance.now();
       console.log(
