@@ -6,6 +6,13 @@ const configuration = {
 };
 const openai = new OpenAI(configuration);
 
+/**
+ * Evaluates an array of messages to determine if they contain marketing content using OpenAI's GPT-4
+ * @param {string[]} messages - Array of messages/tweets to evaluate
+ * @returns {Promise<Object[]>} Array of evaluation results
+ * @property {number} message_number - The index of the message (1-based)
+ * @property {boolean} is_marketing - Whether the message is classified as marketing content
+ */
 export default async function evaluateMessages(messages) {
   // Define the function schema
   const functions = [

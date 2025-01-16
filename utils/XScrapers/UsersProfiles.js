@@ -1,5 +1,16 @@
 import client, { callActorWithRetry } from "./ApifyClient";
 
+/**
+ * Fetches detailed profile information for multiple X (Twitter) handles using Apify Actor
+ * 
+ * @async
+ * @param {string[]} handles - Array of X (Twitter) usernames to fetch profile data for
+ * @returns {Promise<Object[]>} Array of user profile objects containing detailed information about each user
+ * 
+ * @example
+ * const result = await getUserProfiles(["user1", "user2", "user3"]);
+ * console.log(result); // [{  ... }, ...]
+ */
 export default async function getUserProfiles(handles) {
     // Start user profile analysis
     const actor = client.actor("tLs1g71YVTPoXAPnb");

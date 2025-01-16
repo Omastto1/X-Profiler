@@ -1,3 +1,9 @@
+/**
+ * Filters tweets to get only those from today
+ * @param {Object[]} tweets - Array of tweet objects
+ * @param {string} tweets[].createdAt - ISO date string of when the tweet was created
+ * @returns {Object[]} Array of tweets from today
+ */
 function getTodayTweets(tweets) {
   const today = new Date();
   const todayTweets = tweets.filter((tweet) => {
@@ -12,6 +18,12 @@ function getTodayTweets(tweets) {
   return todayTweets;
 }
 
+/**
+ * Filters tweets to get only those from the last 7 days
+ * @param {Object[]} tweets - Array of tweet objects
+ * @param {string} tweets[].createdAt - ISO date string of when the tweet was created
+ * @returns {Object[]} Array of tweets from the last 7 days
+ */
 function getWeekTweets(tweets) {
   const last7Days = new Date();
   last7Days.setDate(last7Days.getDate() - 7);
@@ -24,6 +36,12 @@ function getWeekTweets(tweets) {
   return weekTweets;
 }
 
+/**
+ * Filters tweets to get only those from the last 28 days
+ * @param {Object[]} tweets - Array of tweet objects
+ * @param {string} tweets[].createdAt - ISO date string of when the tweet was created
+ * @returns {Object[]} Array of tweets from the last 28 days
+ */
 function getMonthTweets(tweets) {
   const last28Days = new Date();
   last28Days.setDate(last28Days.getDate() - 28);
@@ -36,6 +54,16 @@ function getMonthTweets(tweets) {
   return monthTweets;
 }
 
+/**
+ * Calculates the percentage of marketing content in a user's tweets over different time periods
+ * @param {Object[]} tweets - Array of tweet objects
+ * @param {string} tweets[].createdAt - ISO date string of when the tweet was created
+ * @param {boolean} tweets[].isMarketing - Whether the tweet is classified as marketing content
+ * @returns {Object} Content saturation percentages
+ * @property {number} daily - Percentage of marketing tweets from today
+ * @property {number} weekly - Percentage of marketing tweets from last 7 days
+ * @property {number} monthly - Percentage of marketing tweets from last 28 days
+ */
 export default function getContentSaturation(tweets) {
   const todayTweets = getTodayTweets(tweets);
   const weekTweets = getWeekTweets(tweets);

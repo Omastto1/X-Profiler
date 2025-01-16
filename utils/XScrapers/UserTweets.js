@@ -35,6 +35,19 @@ let posts_input = {
   "-min_replies": 0,
 };
 
+/**
+ * Fetches recent tweets from a specified X (Twitter) handle and evaluates them for marketing content with LLM
+ * 
+ * @param {string} handle - The X (Twitter) username to fetch tweets from
+ * @returns {Promise<Object[]>} Array of tweet objects with additional marketing evaluation
+ * @property {string} text - The tweet content
+ * @property {boolean} isMarketing - Whether the tweet is classified as marketing content
+ * ...
+ * 
+ * @example
+ * const result = await getUserTweets("exampleUser");
+ * console.log(result); // [{ ... }, ...]
+ */
 export default async function getUserTweets(handle) {
   const date28DaysAgo = new Date();
   date28DaysAgo.setDate(date28DaysAgo.getDate() - 28);

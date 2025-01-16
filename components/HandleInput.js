@@ -1,9 +1,20 @@
 import { useState } from 'react';
 import { Send } from 'lucide-react';
 
+/**
+ * A form component for inputting X (Twitter) handles
+ * @param {Object} props - The component props
+ * @param {Function} props.onSubmit - Callback function called with array of handles when form is submitted
+ * @param {boolean} props.isLoading - Whether the form is in a loading state
+ * @returns {JSX.Element} A form with textarea for handles and a submit button
+ */
 function HandleInput({ onSubmit, isLoading }) {
   const [input, setInput] = useState('');
 
+  /**
+   * Handles form submission by parsing comma-separated handles and calling onSubmit
+   * @param {React.FormEvent} e - The form submission event
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
     const handles = input

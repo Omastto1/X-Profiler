@@ -6,6 +6,20 @@ const configuration = {
 };
 const openai = new OpenAI(configuration);
 
+/**
+ * Classifies a user into categories and determines their location using OpenAI's GPT-4
+ * @param {Object} params - The parameters object
+ * @param {string} params.handle - The user's X (Twitter) handle
+ * @param {string} params.description - The user's profile description
+ * @param {string[]} params.tweets - Array of user's recent tweets
+ * @param {string} params.location - User's self-reported location
+ * @param {string[]} params.followerLocations - Array of locations from user's followers
+ * @returns {Promise<Object>} Classification result
+ * @property {string} handle - The user's handle
+ * @property {string[]} categories - Array of categories the user belongs to
+ * @property {string} location - User's determined location
+ * @property {string} region - User's determined geographical region
+ */
 export default async function classifyUser({handle, description, tweets, location, followerLocations}) {
   // Define the function schema
   const functions = [

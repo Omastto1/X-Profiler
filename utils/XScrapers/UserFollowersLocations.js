@@ -9,6 +9,19 @@ let followers_input = {
   getFollowing: false,
 };
 
+/**
+ * Fetches the locations of followers for a given X (Twitter) handle using Apify Actor
+ * 
+ * @async
+ * @param {Object} params - The parameters object
+ * @param {string} params.handle - The X (Twitter) handle to fetch followers' locations for
+ * @returns {Promise<Object>} Object containing an array of locations of the user's followers
+ * @property {string[]} locations - Array of location strings from followers' profiles
+ * 
+ * @example
+ * const result = await getUserFollowersLocations({ handle: "exampleUser" });
+ * console.log(result.locations); // ['Location1', 'Location2', ...]
+ */
 export default async function getUserFollowersLocations({ handle }) {
   followers_input.user_names = [handle];
 

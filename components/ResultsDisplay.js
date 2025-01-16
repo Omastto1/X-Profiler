@@ -1,5 +1,20 @@
 import { AlertCircle, CheckCircle, Clock, Loader2 } from "lucide-react";
 
+/**
+ * Displays analysis results for X (Twitter) profiles in a table format
+ * @param {Object} props - The component props
+ * @param {Array<Object>} props.profiles - Array of profile objects to display
+ * @param {string} props.profiles[].handle - The X handle
+ * @param {string} props.profiles[].status - Current status ('pending'|'completed'|'error')
+ * @param {string} [props.profiles[].imageUrl] - URL to profile image
+ * @param {Object} [props.profiles[].contentSaturation] - Content saturation metrics
+ * @param {number} [props.profiles[].contentSaturation.daily] - Daily content saturation percentage
+ * @param {number} [props.profiles[].contentSaturation.weekly] - Weekly content saturation percentage
+ * @param {number} [props.profiles[].contentSaturation.monthly] - Monthly content saturation percentage
+ * @param {string} [props.profiles[].classification] - User classification/categories
+ * @param {string} [props.profiles[].location] - User's determined location
+ * @returns {JSX.Element|null} A table displaying profile analysis results or null if no profiles
+ */
 function ResultsDisplay({ profiles }) {
   if (profiles.length === 0) return null;
 

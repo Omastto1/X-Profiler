@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react';
 
+/**
+ * A loading indicator component that displays rotating messages with an hourglass animation
+ * @returns {JSX.Element} A loading indicator with animated hourglass and cycling status messages
+ */
 const LoadingHourglass = () => {
   const [loadingStep, setLoadingStep] = useState(0);
   const loadingMessages = [

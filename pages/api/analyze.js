@@ -4,6 +4,18 @@ import getUserTweets from "@/utils/XScrapers/UserTweets";
 import getUserFollowersLocations from "@/utils/XScrapers/UserFollowersLocations";
 import getContentSaturation from "@/utils/ContentSaturation";
 
+/**
+ * API handler for analyzing X (Twitter) profiles
+ * @returns {Promise<void>} JSON response with analyzed profile data or error
+ * @property {Object[]} profiles - Array of analyzed profile objects
+ * @property {string} profiles[].handle - The X handle
+ * @property {string} [profiles[].imageUrl] - URL to profile image
+ * @property {Object} profiles[].contentSaturation - Content saturation metrics
+ * @property {string} profiles[].classification - Comma-separated list of user categories
+ * @property {string} profiles[].location - User's determined location or region
+ * @property {string} profiles[].status - Analysis status ('completed'|'error')
+ * @property {string} [profiles[].error] - Error message if status is 'error'
+ */
 export default async function handler(req, res) {
   const { handles } = req.body;
 
