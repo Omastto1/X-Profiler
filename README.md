@@ -23,6 +23,32 @@ AI-powered analytics tool that evaluates X (Twitter) user profiles by analyzing 
 - OpenAI API Key
 - Environment variables set up (see below)
 
+## Project Structure
+
+```
+├── components/          # React components
+│   ├── HandleInput     # User input form component
+│   ├── LoadingHourglass# Loading animation
+│   └── ResultsDisplay  # Analysis results display
+├── pages/              # Next.js pages
+│   ├── api/           # API routes
+│   │   └── analyze.js # Main analysis endpoint
+│   ├── _app.js       # App wrapper
+│   ├── 404.js        # Custom 404 page
+│   └── index.js      # Homepage
+├── utils/             # Utility functions
+│   ├── XScrapers/    # Twitter data collection modules
+│   │   ├── ApifyClient.js
+│   │   ├── UserFollowersLocations.js
+│   │   ├── UsersProfiles.js
+│   │   └── UserTweets.js
+│   ├── ContentSaturation.js      # Content analysis logic
+│   ├── evaluateTweetMarketing.js # Tweet classification
+│   └── evaluateUserCategories.js # User categorization
+└── styles/            # CSS and styling files
+    └── globals.css    # Global styles
+```
+
 ## Setup
 
 1. Clone the repository:
