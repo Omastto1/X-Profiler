@@ -58,12 +58,15 @@ export default async function evaluateMessages(messages) {
   `;
 
   // Call the OpenAI API
+  const startTime = performance.now();
   const response = await openai.chat.completions.create({
-    model: "gpt-4o-mini-2024-07-18",
+    model: "gpt-4o-mini-2024-07-18", 
     messages: [{ role: "user", content: prompt }],
     functions,
     function_call: { name: "evaluate_marketing_content" }, // Explicitly call the function
   });
+  const endTime = performance.now();
+  console.log(`[X Scraper] Evaluating ${messages.length} messages took ${((endTime - startTime)/1000).toFixed(2)} seconds`);
 
   // Parse the function response
   const functionResponse =

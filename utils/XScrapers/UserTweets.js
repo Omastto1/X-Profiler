@@ -37,18 +37,18 @@ let posts_input = {
 
 /**
  * Fetches recent tweets from a specified X (Twitter) handle and evaluates them for marketing content with LLM
- * 
+ *
  * @param {string} handle - The X (Twitter) username to fetch tweets from
  * @returns {Promise<Object[]>} Array of tweet objects with additional marketing evaluation
  * @property {string} text - The tweet content
  * @property {boolean} isMarketing - Whether the tweet is classified as marketing content
  * ...
- * 
+ *
  * @example
  * const result = await getUserTweets("exampleUser");
  * console.log(result); // [{ ... }, ...]
  */
-export default async function getUserTweets(handle) {
+export default async function getUsersTweets({ handles }) {
   const date28DaysAgo = new Date();
   date28DaysAgo.setDate(date28DaysAgo.getDate() - 28);
   const formattedDate =
@@ -56,9 +56,10 @@ export default async function getUserTweets(handle) {
 
   posts_input = {
     ...posts_input,
-    searchTerms: [`from:${handle} since:${formattedDate}`],
+    searchTerms: handles.map(
+      (handle) => `from:${handle} since:${formattedDate}`
+    ),
     since: formattedDate,
-    from: handle,
   };
 
   const actor = client.actor("CJdippxWmn9uRfooo");
@@ -69,12 +70,9 @@ export default async function getUserTweets(handle) {
     .dataset(tweets_run.defaultDatasetId)
     .listItems(); // "YARhKNQrY52id47Eo"
 
+  // Filter tweets for the specific handle
   const relevantTweets = items.filter((item) => item.type === "tweet");
 
-  // const relevantTweetsWithMarketing = relevantTweets.map((tweet) => {
-  //   tweet.isMarketing = false;
-  //   return tweet;
-  // });
   const relevantTweetsWithMarketing = await evaluateMessages(
     relevantTweets.map((tweet) => tweet.text)
   )
@@ -95,5 +93,11 @@ export default async function getUserTweets(handle) {
       return [];
     });
 
-  return relevantTweetsWithMarketing;
+  const relevantTweetsWithMarketingList = handles.map((handle) => {
+    return relevantTweetsWithMarketing.filter(
+      (tweet) => tweet.author.userName.toLowerCase() === handle.toLowerCase()
+    );
+  });
+
+  return relevantTweetsWithMarketingList;
 }
